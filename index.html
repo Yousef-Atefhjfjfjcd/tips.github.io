@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Sebha</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <style>
+    /* Common styles for all screen sizes */
+    body {
+      margin: 0;
+      padding: 0;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      text-align: center;
+      background-color: #2B226B;
+      color: #ebe6e6;
+      flex-direction: column;
+      padding-top: 0px; /* Add top padding to body to account for fixed header */
+    }
+
+    .logo {
+      position: absolute;
+      top: 5px;
+      left: 2px;
+      width: 60px; /* Adjust the width */
+    }
+
+    .header {
+      position:absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #2B226B;
+      color: #ebe6e6;
+      padding: 0px;
+      text-align: center;
+    }
+
+    #menu-container {
+      position: absolute;
+      background-color: #3d3d41;
+      top: 27px;
+      right: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      cursor: pointer;
+    }
+
+    .menu-line {
+      width: 25px;
+      height: 3px;
+      background-color: #ffffff;
+      margin-bottom: 5px;
+    }
+
+    .buttons-container {
+      position: absolute;
+      top: 70px;
+      right: 10px;
+      background-color: #38383a;
+      padding: 10px;
+      display: none;
+    }
+
+    .buttons-container.visible {
+      display:block;
+    }
+
+    .buttons-container button {
+      display:block;
+      background: none;
+      border: none;
+      color: #ebe6e6;
+      font-size: 16px;
+      margin-bottom: 10px; /* Add margin bottom to create space between buttons */
+      cursor: pointer;
+    }
+
+    .buttons-container button:focus {
+      outline: none;
+    }
+
+    #reset {
+      background-color: #c70000;
+      color: #ebe6e6;
+      padding: 15px 25px;
+      font-size: 15px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    #reset:hover {
+      background-color: #990000;
+    }
+
+    .hidden {
+      display:none;
+    }
+
+    .visible {
+      display: block;
+    }
+
+    /* Media queries for responsive design */
+    @media only screen and (max-width: 600px) {
+      .buttons-container {
+        top: 55px;
+      }
+
+      .buttons-container button {
+        margin-bottom: 20px;
+      }
+    }
+  </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var counterElement = document.getElementById('counter');
+      var count = 0;
+  
+      document.addEventListener("click", function(event) {
+        var target = event.target;
+        if (
+          !target.classList.contains("button") &&
+          !target.closest("#menu-container")
+        ) {
+          count++;
+          counterElement.innerText = count;
+        }
+      });
+  
+      var resetButton = document.getElementById('reset');
+      resetButton.addEventListener("click", function() {
+        count = -1;
+        counterElement.innerText = count;
+      });
+  
+      var sebhaButton = document.getElementById('sebha-button');
+      var duaButton = document.getElementById('dua-button');
+      var sebhaSentences = document.getElementById('sebha-sentences');
+      var duaSentences = document.getElementById('dua-sentences');
+      var dailyDuasButton = document.getElementById('daily-duas-button');
+      var dailyDuasSentences = document.getElementById('daily-duas-sentences');
+      var ayatelkorsiButton = document.getElementById('ayat-elkorsi-button');
+      var ayatelkorsiSentences = document.getElementById('ayat-elkorsi-sentences');
+      var deathButton = document.getElementById('death-button');
+      var deathSentences = document.getElementById('death-sentences');
+  
+      sebhaButton.addEventListener("click", function() {
+        sebhaSentences.classList.remove("hidden");
+        duaSentences.classList.add("hidden");
+        dailyDuasSentences.classList.add("hidden");
+        ayatelkorsiSentences.classList.add("hidden");
+        deathSentences.classList.add("hidden")
+      });
+  
+      duaButton.addEventListener("click", function() {
+        sebhaSentences.classList.add("hidden");
+        duaSentences.classList.remove("hidden");
+        dailyDuasSentences.classList.add("hidden");
+        ayatelkorsiSentences.classList.add("hidden");
+        deathSentences.classList.add("hidden")
+      });
+
+      dailyDuasButton.addEventListener("click", function() {
+        sebhaSentences.classList.add("hidden");
+        duaSentences.classList.add("hidden");
+        dailyDuasSentences.classList.remove("hidden");
+        ayatelkorsiSentences.classList.add("hidden");
+        deathSentences.classList.add("hidden")
+      });
+
+      ayatelkorsiButton.addEventListener("click", function() {
+        sebhaSentences.classList.add("hidden");
+        duaSentences.classList.add("hidden");
+        dailyDuasSentences.classList.add("hidden");
+        ayatelkorsiSentences.classList.remove("hidden");
+        deathSentences.classList.add("hidden")
+      });
+
+      deathButton.addEventListener("click", function() {
+        sebhaSentences.classList.add("hidden");
+        duaSentences.classList.add("hidden");
+        dailyDuasSentences.classList.add("hidden");
+        ayatelkorsiSentences.classList.add("hidden");
+        deathSentences.classList.remove("hidden")
+
+      });
+  
+      var menuContainer = document.getElementById('menu-container');
+      var buttonsContainer = document.getElementById('buttons-container');
+  
+      menuContainer.addEventListener("click", function() {
+        buttonsContainer.classList.toggle("visible");
+      });
+    });
+  </script>
+</head>
+<body dir="rtl" lang="ar">
+  <div class="header">
+    <h1 style="margin-bottom: 30px;">Sebha</h1>
+  </div>
+  <div id="menu-container">
+    <div class="menu-line"></div>
+    <div class="menu-line"></div>
+    <div class="menu-line"></div>
+  </div>
+  <div id="buttons-container" class="buttons-container">
+    <button id="sebha-button" class="button">تسبيح</button>
+    <button id="dua-button" class="button">دعاء سيد الاستغفار</button>
+    <button id="daily-duas-button" class="button">ادعية يومية</button>
+    <button id="ayat-elkorsi-button" class="button">اية الكرسي</button>
+    <button id="death-button" class="button">دعاء للموتي</button>
+  </div>
+  <div id="sebha-sentences" class="hidden">
+    <section style="margin-top: 20px;">
+      <p dir="rtl" lang="ar" style="color:#ebe6e6;font-size:20px;">سبحان الله</p>
+      <p dir="rtl" lang="ar" style="color:#ebe6e6;font-size:20px;">الحمد لله</p>
+      <p dir="rtl" lang="ar" style="color:#ebe6e6;font-size:20px;">لا اله الا الله</p>
+      <p dir="rtl" lang="ar" style="color:#ebe6e6;font-size:20px;">الله اكبر</p>
+    </section>
+  </div>
+  <div id="dua-sentences" class="hidden">
+    <section>
+      <p dir="rtl" lang="ar" style="color:#ebe6e6;font-size:20px;">للهم أنت ربي، لا إله إلا أنت</p>
+      <p dir="rtl" lang="ar" style="color:#ebe6e6;font-size:20px;">خلقتني وأنا عبدك</p>
+      <p dir="rtl" lang="ar" style="color:#ebe6e6;font-size:20px;"> وأنا على عهدك ووعدك ما استطعت</p>
+      <p dir="rtl" lang="ar" style="color:#ebe6e6;font-size:20px;">أعوذ بك من شر ما صنعت، أبوء لك بنعمتك علي</p>
+      <p dir="rtl" lang="ar" style="color:#ebe6e6;font-size:20px;"> وأبوء لك بذنبي فاغفر لي، فإنه لا يغفر الذنوب إلا أنت</p>
+    </section>
+  </div>
+  <div id="daily-duas-sentences" class="hidden">
+    <section>
+      <p dir="rtl" lang="ar" style="color:#ebe6e6;font-size:20px;">اللهم اشرح لي صدري ويسر لي أمري</p>
+      <p dir="rtl" lang="ar" style="color:#ebe6e6;font-size:20px;">اللهم اجعلنا من الصراط المستقيم</p>
+      <p dir="rtl" lang="ar" style="color:#ebe6e6;font-size:20px;">اللهم اكثر من مالي وبارك لي في ما رزقتني</p>
+      <p dir="rtl" lang="ar" style="color:#ebe6e6;font-size:20px;">اللهم إنك عفو كريم تحب العفو فاعف عني</p>
+      <p dir="rtl" lang="ar" style="color:#ebe6e6;font-size:20px;">اللهم اعني على ذكرك وشكرك وحسن عبادتك</p>
+      <p dir="rtl" lang="ar" style="color:#ebe6e6;font-size:20px;">استغفر الله العظيم الذي لا اله الا هو الحي القيوم واتوب اليه  (ثلاث مرات)</p>
+    </section>
+  </div>
+  <div id="ayat-elkorsi-sentences" class="hidden">
+    <section>
+      <p dir="rtl" lang="ar" style="color:#ebe6e6;font-size:20px;">اللهُ لَا إِلَهَ إِلَّا هُوَ الْحَيُّ الْقَيُّوم</p>
+      <p dir="rtl" lang="ar" style="color:#ebe6e6;font-size:20px;">لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ لَّهُ مَا فِي السَّمَوَاتِ وَمَا فِي الْأَرْضِ</p>
+      <p dir="rtl" lang="ar" style="color:#ebe6e6;font-size:20px;">مَن ذَا الَّذِي يَشْفَعُ عِندَهُ إِلَّا بِإِذْنِهِ</p>
+      <p dir="rtl" lang="ar" style="color:#ebe6e6;font-size:20px;">يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ</p>
+      <p dir="rtl" lang="ar" style="color:#ebe6e6;font-size:20px;">وَلَا يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلَّا بِمَا شَاءَ وَسِعَ كُرْسِيُّهُ السَّمَوَاتِ وَالْأَرْضَ</p>
+      <p dir="rtl" lang="ar" style="color:#ebe6e6;font-size:20px;"> وَلَا يَؤُودُهُ حِفْظُهُمَا وَهُوَ الْعلى العظيم</p>
+    </section>
+  </div>
+  <div id="death-sentences" class="hidden">
+    <section>
+      <p dir="rtl" lang="ar" style="color:#ebe6e6;font-size:20px;">اللهم اغفر للمؤمنين والمؤمنات</p>
+      <p dir="rtl" lang="ar" style="color:#ebe6e6;font-size:20px;">المسلمين والمسلمات</p>
+      <p dir="rtl" lang="ar" style="color:#ebe6e6;font-size:20px;">الاحياء منهم والاموات</p>
+    </section>
+  </div>
+  <p>Count: <span id="counter">0</span></p>
+  <button id="reset" onclick="resetCounter()">Reset</button>
+  <img src="https://drive.google.com/uc?export=view&id=1kLgn6rqgo42Eur4kflJccRuhkiH0Baki" class="logo">
+
+  <script>
+    function resetCounter() {
+      var counterElement = document.getElementById('counter');
+      counterElement.innerText = "0";
+    }
+  </script>
+</body>
+</html>
